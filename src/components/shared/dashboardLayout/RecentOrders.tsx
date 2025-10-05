@@ -58,7 +58,7 @@ export function RecentOrders() {
             <div className="flex-1">
               <p className="font-medium text-gray-900">{order.name}</p>
               <div className="flex items-center gap-2 mt-1">
-                <span className={`text-sm font-medium ${typeColors[order.type as keyof typeof typeColors]}`}>
+                <span className={`text-sm font-medium ${typeColors[order.type as keyof typeof typeColors]} border border-current px-2 py-0.5 rounded`}>
                   {order.type}
                 </span>
                 <span className="text-sm text-gray-500">{order.time}</span>

@@ -1,4 +1,5 @@
 import { MatrixCard } from "@/components/shared/dashboardLayout/MatrixCard";
+import { NotificationsAlerts } from "@/components/shared/dashboardLayout/NotificationsAlerts";
 import { RecentOrders } from "@/components/shared/dashboardLayout/RecentOrders";
 import { SalesChart } from "@/components/shared/dashboardLayout/SalesChart";
 import { WelcomeHeader } from "@/components/shared/dashboardLayout/WelcomeHeader";
@@ -18,7 +19,7 @@ export default function SellerDashboardPage() {
         {/* Bottom Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <RecentOrders />
-          {/* <NotificationsAlerts /> */}
+          <NotificationsAlerts />
         </div>
       </div>
     </div>
