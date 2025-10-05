@@ -2,12 +2,16 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { baseApi } from "./api/baseApi";
 import authReducer from "./features/user/authSlice";
+import uiReducer from "@/lib/uiSlice";
 
 // Configure the Redux store
 export const store = configureStore({
   reducer: {
     // Auth slice
     auth: authReducer,
+
+    // UI slice (sidebar, responsive flags)
+    ui: uiReducer,
 
     // API slice
     [baseApi.reducerPath]: baseApi.reducer,
