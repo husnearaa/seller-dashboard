@@ -1,3 +1,4 @@
+import { MatrixCard } from "@/components/shared/dashboardLayout/MatrixCard";
 import { WelcomeHeader } from "@/components/shared/dashboardLayout/WelcomeHeader";
 
 export default function SellerDashboardPage() {
@@ -8,7 +9,7 @@ export default function SellerDashboardPage() {
         <WelcomeHeader />
 
         {/* Metrics Cards */}
-        {/* <MatrixCard /> */}
+        <MatrixCard />
         {/* Sales Chart */}
         {/* <SalesChart /> */}
 
