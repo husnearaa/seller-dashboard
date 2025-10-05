@@ -102,7 +102,7 @@ export function Sidebar() {
                   className={cn(
                     "flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-purple-100 text-purple-700"
+                      ? "bg-primary text-white"
                       : "text-[#727272] hover:bg-gray-100 hover:text-gray-900"
                   )}
                 >
@@ -115,7 +115,7 @@ export function Sidebar() {
 
           {/* Sign Out */}
           <div className="p-4 border-t" onClick={handleLogout}>
-            <button className="flex items-center gap-3 px-3 py-2 w-full text-left text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+            <button className="flex items-center gap-3 px-3 py-2 w-full text-left text-sm font-medium hover:text-red-600 text-black bg-gray-200 hover:bg-red-50 rounded-lg transition-colors">
               <LogOut className="w-5 h-5" />
               Sign Out
             </button>
