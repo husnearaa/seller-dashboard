@@ -1,4 +1,5 @@
 import { MatrixCard } from "@/components/shared/dashboardLayout/MatrixCard";
+import { SalesChart } from "@/components/shared/dashboardLayout/SalesChart";
 import { WelcomeHeader } from "@/components/shared/dashboardLayout/WelcomeHeader";
 
 export default function SellerDashboardPage() {
@@ -11,7 +12,7 @@ export default function SellerDashboardPage() {
         {/* Metrics Cards */}
         <MatrixCard />
         {/* Sales Chart */}
-        {/* <SalesChart /> */}
+        <SalesChart />
 
         {/* Bottom Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
