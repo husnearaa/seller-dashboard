@@ -16,6 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
+import Logo from "@/assets/logo.png";
 
 const navigation = [
   { name: "Dashboard", href: "/seller-dashboard", icon: LayoutDashboard },
@@ -78,7 +79,7 @@ export function Sidebar() {
           <div className="flex items-center justify-center gap-2 p-6">
             <div className="relative" style={{ width: 200, height: 50 }}>
               <Image
-                src="/logo.png"
+                src={Logo}
                 fill
                 alt="EventX"
                 className="object-contain"
