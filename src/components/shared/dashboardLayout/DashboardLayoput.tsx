@@ -43,7 +43,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header />
-        <main className="flex-1 overflow-auto p-6 bg-[#f5f5f5]">
+        <main className="flex-1 overflow-auto p-6 bg-white">
           {children}
         </main>
       </div>
