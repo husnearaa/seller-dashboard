@@ -9,7 +9,6 @@ import {
   FileText,
   LayoutDashboard,
   LogOut,
-  Settings,
   User,
   Users,
 } from "lucide-react";
@@ -19,13 +18,17 @@ import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Users", href: "/dashboard/users", icon: Users },
-  { name: "Events", href: "/dashboard/events", icon: Calendar },
-  { name: "Reports", href: "/dashboard/reports", icon: FileText },
-  { name: "Revenue", href: "/dashboard/revenue", icon: CircleDollarSign },
-  { name: "Settings", href: "/dashboard/settings", icon: Settings },
-  { name: "Profile", href: "/dashboard/profile", icon: User },
+  { name: "Dashboard", href: "/seller-dashboard", icon: LayoutDashboard },
+  { name: "Store Management", href: "/seller-dashboard/store", icon: Users },
+  { name: "Product Management", href: "/seller-dashboard/product", icon: Calendar },
+  { name: "Service Management", href: "/seller-dashboard/service", icon: FileText },
+  { name: "Consultation ", href: "/seller-dashboard/Consultation", icon: CircleDollarSign },
+  { name: "Subscription ", href: "/seller-dashboard/Subscription", icon: CircleDollarSign },
+  { name: "Specialist", href: "/seller-dashboard/Specialist", icon: CircleDollarSign },
+  { name: "Orders & Bookings", href: "/seller-dashboard/orders-bookings", icon: CircleDollarSign },
+  { name: "Payments & Earnings", href: "/seller-dashboard/payments-earnings", icon: CircleDollarSign },
+  { name: "Marketing & Promotions", href: "/seller-dashboard/marketing-promotions", icon: CircleDollarSign },
+  { name: "Reports & Analytics", href: "/seller-dashboard/reports-analytics", icon: User },
 ];
 
 export function Sidebar() {
