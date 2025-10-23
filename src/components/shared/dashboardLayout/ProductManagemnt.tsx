@@ -9,7 +9,7 @@ import Link from "next/link";
 import { IoEye } from "react-icons/io5";
 
 // Sample consultant data
-const consultantData = [
+const initialConsultantData = [
   {
     id: "C001",
     userName: "John Smith",
@@ -94,6 +94,31 @@ const consultantData = [
 
 export default function ProductManagement() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [consultantData, setConsultantData] = useState(initialConsultantData);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [productToDelete, setProductToDelete] = useState<string | null>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  const handleDeleteClick = (id: string) => {
+    setProductToDelete(id);
+    setShowDeleteModal(true);
+  };
+
+  const deleteProduct = () => {
+    if (productToDelete) {
+      setConsultantData((prevData) =>
+        prevData.filter((item) => item.id !== productToDelete)
+      );
+      setShowDeleteModal(false);
+      setShowSuccessMessage(true);
+      setTimeout(() => setShowSuccessMessage(false), 3000);
+    }
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
+    setProductToDelete(null);
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -121,6 +146,40 @@ export default function ProductManagement() {
 
   return (
     <div className="min-h-screen p-8">
+      {/* Success Message */}
+      {showSuccessMessage && (
+        <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-in slide-in-from-top duration-300">
+          Product has been deleted successfully!
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 bg-white/20 backdrop-blur-xs flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md mx-4 border border-gray-200 shadow-lg">
+            <h3 className="text-lg font-semibold mb-4">Confirm Delete</h3>
+            <p className="text-gray-600 mb-6">
+              Are you sure you want to delete this product? This action cannot
+              be undone.
+            </p>
+            <div className="flex justify-end gap-3">
+              <Button
+                onClick={cancelDelete}
+                className="bg-gray-300 text-gray-700 hover:bg-gray-400"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={deleteProduct}
+                className="bg-red-600 text-white hover:bg-red-700"
+              >
+                Delete
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="mx-auto container">
         {/* Header */}
         <div className="mb-6 flex items-center lg:justify-between justify-center flex-col gap-4 md:flex-row">
@@ -230,7 +289,9 @@ export default function ProductManagement() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-3">
-                        <Link href={`/seller-dashboard/product/edit-product/${item.id}`}>
+                        <Link
+                          href={`/seller-dashboard/product/edit-product/${item.id}`}
+                        >
                           <Button className="rounded p-1.5 text-white hover:bg-blue-50 bg-blue-600 hover:text-blue-600 border hover:border-blue-600 transition-colors">
                             <Pencil className="h-4 w-4" />
                           </Button>
@@ -238,7 +299,10 @@ export default function ProductManagement() {
                         <button className="rounded-full p-2 hover:text-white bg-blue-100 hover:bg-blue-600 text-blue-600 border transition-colors">
                           <IoEye className="text-2xl" />
                         </button>
-                        <Button className="rounded p-1.5 text-red-600 bg-white hover:bg-red-50 transition-colors shadow-md">
+                        <Button
+                          onClick={() => handleDeleteClick(item.id)}
+                          className="rounded p-1.5 text-red-600 bg-white hover:bg-red-50 transition-colors shadow-md"
+                        >
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
