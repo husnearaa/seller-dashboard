@@ -26,7 +26,7 @@ const navigation = [
   { name: "Consultation ", href: "/seller-dashboard/consultation", icon: CircleDollarSign },
   { name: "Subscription ", href: "/seller-dashboard/subscription", icon: CircleDollarSign },
   { name: "Specialist", href: "/seller-dashboard/specialist", icon: CircleDollarSign },
-  { name: "Orders & Bookings", href: "/seller-dashboard/orders-bookings", icon: CircleDollarSign },
+  { name: "Orders & Bookings", href: "/seller-dashboard/order-booking", icon: CircleDollarSign },
   { name: "Payments & Earnings", href: "/seller-dashboard/payments-earnings", icon: CircleDollarSign },
   { name: "Marketing & Promotions", href: "/seller-dashboard/marketing-promotions", icon: CircleDollarSign },
   { name: "Reports & Analytics", href: "/seller-dashboard/reports-analytics", icon: User },
