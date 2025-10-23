@@ -1,13 +1,23 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { Search, Eye, Pencil, Trash2 } from "lucide-react"
+import { toast } from "sonner"
 
 // Sample service data
-const serviceData = [
+const initialServiceData = [
   {
     id: 1,
     name: "Hair Cut",
@@ -17,6 +27,7 @@ const serviceData = [
     status: "Active",
     slotsAvailable: "20 sets available",
     price: "$2,742.00",
+    description: "Professional hair cutting service with styling",
   },
   {
     id: 2,
@@ -27,6 +38,7 @@ const serviceData = [
     status: "Active",
     slotsAvailable: "No set available",
     price: "$2,742.00",
+    description: "Construction and property development services",
   },
   {
     id: 3,
@@ -37,6 +49,7 @@ const serviceData = [
     status: "Inactive",
     slotsAvailable: "05 set available",
     price: "$2,742.00",
+    description: "Relaxing massage therapy sessions",
   },
   {
     id: 4,
@@ -47,6 +60,7 @@ const serviceData = [
     status: "Active",
     slotsAvailable: "20 sets available",
     price: "$2,742.00",
+    description: "Comprehensive pet care and grooming services",
   },
   {
     id: 5,
@@ -57,82 +71,67 @@ const serviceData = [
     status: "Inactive",
     slotsAvailable: "05 set available",
     price: "$2,742.00",
-  },
-  {
-    id: 6,
-    name: "Pet Care",
-    icon: "🐾",
-    category: "Retail & Fashion",
-    duration: "10 Mins",
-    status: "Active",
-    slotsAvailable: "No set available",
-    price: "$2,742.00",
-  },
-  {
-    id: 7,
-    name: "Joga",
-    icon: "🧘",
-    category: "Business & Industry",
-    duration: "10 Mins",
-    status: "Inactive",
-    slotsAvailable: "20 sets available",
-    price: "$2,742.00",
-  },
-  {
-    id: 8,
-    name: "Gardening",
-    icon: "🌱",
-    category: "Retail & Fashion",
-    duration: "10 Mins",
-    status: "Active",
-    slotsAvailable: "05 set available",
-    price: "$2,742.00",
-  },
-  {
-    id: 9,
-    name: "Therapy",
-    icon: "🧠",
-    category: "Home & Pets",
-    duration: "10 Mins",
-    status: "Inactive",
-    slotsAvailable: "No set available",
-    price: "$2,742.00",
-  },
-  {
-    id: 10,
-    name: "Event Organization",
-    icon: "🎉",
-    category: "Home & Pets",
-    duration: "10 Mins",
-    status: "Active",
-    slotsAvailable: "05 set available",
-    price: "$2,742.00",
+    description: "Skin care and facial treatment services",
   },
 ]
 
 export default function ServiceManagement() {
   const [searchQuery, setSearchQuery] = useState("")
+  const [serviceData, setServiceData] = useState(initialServiceData)
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [viewDialogOpen, setViewDialogOpen] = useState(false)
+  const [selectedService, setSelectedService] = useState<any>(null)
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Active":
-        return "bg-green-50 text-green-600"
+        return "bg-green-50 text-green-600 border border-green-200"
       case "Inactive":
-        return "bg-gray-100 text-gray-600"
+        return "bg-gray-100 text-gray-600 border border-gray-200"
       default:
-        return "bg-gray-100 text-gray-600"
+        return "bg-gray-100 text-gray-600 border border-gray-200"
     }
   }
 
   const getSlotColor = (slot: string) => {
     if (slot.includes("20 sets available")) {
-      return "bg-green-50 text-green-600"
+      return "bg-green-50 text-green-600 border border-green-200"
     } else if (slot.includes("No set available")) {
-      return "bg-red-50 text-red-600"
+      return "bg-red-50 text-red-600 border border-red-200"
     } else if (slot.includes("05 set available")) {
-      return "bg-orange-50 text-orange-600"
+      return "bg-orange-50 text-orange-600 border border-orange-200"
     }
-    return "bg-gray-100 text-gray-600"
+    return "bg-gray-100 text-gray-600 border border-gray-200"
+  }
+
+  // Filter services based on search query
+  const filteredServices = serviceData.filter(service =>
+    service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    service.category.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
+  // Handle delete click
+  const handleDeleteClick = (service: any) => {
+    setSelectedService(service)
+    setDeleteDialogOpen(true)
+  }
+
+  // Handle confirm delete
+  const handleConfirmDelete = () => {
+    if (selectedService) {
+      setServiceData(prev => prev.filter(service => service.id !== selectedService.id))
+      setDeleteDialogOpen(false)
+      setSelectedService(null)
+      toast.success("Service deleted successfully", {
+        description: `${selectedService.name} has been removed from your services.`
+      })
+    }
+  }
+
+  // Handle view click
+  const handleViewClick = (service: any) => {
+    setSelectedService(service)
+    setViewDialogOpen(true)
   }
 
   return (
@@ -194,7 +193,7 @@ export default function ServiceManagement() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
-                {serviceData.map((service) => (
+                {filteredServices.map((service) => (
                   <tr key={service.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4">
                       <Checkbox />
@@ -226,13 +225,19 @@ export default function ServiceManagement() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{service.price}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
+                        <button 
+                          className="rounded p-1.5 text-blue-600 hover:bg-blue-50 transition-colors"
+                          onClick={() => handleViewClick(service)}
+                        >
+                          <Eye className="h-4 w-4" />
+                        </button>
                         <button className="rounded p-1.5 text-blue-600 hover:bg-blue-50 transition-colors">
                           <Pencil className="h-4 w-4" />
                         </button>
-                        <button className="rounded p-1.5 text-blue-600 hover:bg-blue-50 transition-colors">
-                          <Eye className="h-4 w-4" />
-                        </button>
-                        <button className="rounded p-1.5 text-red-600 hover:bg-red-50 transition-colors">
+                        <button 
+                          className="rounded p-1.5 text-red-600 hover:bg-red-50 transition-colors"
+                          onClick={() => handleDeleteClick(service)}
+                        >
                           <Trash2 className="h-4 w-4" />
                         </button>
                       </div>
@@ -243,6 +248,107 @@ export default function ServiceManagement() {
             </table>
           </div>
         </div>
+
+        {/* Delete Confirmation Dialog */}
+        <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>Delete Service</DialogTitle>
+              <DialogDescription>
+                Are you sure you want to delete <strong>{selectedService?.name}</strong>? This action cannot be undone.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="flex gap-2 sm:gap-0">
+              <Button
+                variant="outline"
+                onClick={() => setDeleteDialogOpen(false)}
+                className="flex-1"
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={handleConfirmDelete}
+                className="flex-1"
+              >
+                Delete Service
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* View Service Dialog */}
+        <Dialog open={viewDialogOpen} onOpenChange={setViewDialogOpen}>
+          <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Service Details</DialogTitle>
+            </DialogHeader>
+            
+            {selectedService && (
+              <div className="space-y-6">
+                {/* Service Header */}
+                <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="h-16 w-16 flex-shrink-0 rounded-lg bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-2xl">
+                    {selectedService.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">{selectedService.name}</h3>
+                    <p className="text-gray-600">{selectedService.category}</p>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                  <h4 className="font-medium text-gray-900 mb-2">Description</h4>
+                  <p className="text-gray-600">{selectedService.description}</p>
+                </div>
+
+                {/* Details Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h4 className="font-medium text-gray-900 mb-2">Duration</h4>
+                    <p className="text-gray-600">{selectedService.duration}</p>
+                  </div>
+                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h4 className="font-medium text-gray-900 mb-2">Price</h4>
+                    <p className="text-gray-600">{selectedService.price}</p>
+                  </div>
+                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h4 className="font-medium text-gray-900 mb-2">Status</h4>
+                    <span
+                      className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getStatusColor(selectedService.status)}`}
+                    >
+                      {selectedService.status}
+                    </span>
+                  </div>
+                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h4 className="font-medium text-gray-900 mb-2">Slots Available</h4>
+                    <span
+                      className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getSlotColor(selectedService.slotsAvailable)}`}
+                    >
+                      {selectedService.slotsAvailable}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3 pt-4 border-t border-gray-200">
+                  <Button className="bg-gray-900 text-white hover:bg-gray-800">
+                    <Pencil className="h-4 w-4 mr-2" />
+                    Edit Service
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setViewDialogOpen(false)}
+                    className="border-gray-300"
+                  >
+                    Close
+                  </Button>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   )
