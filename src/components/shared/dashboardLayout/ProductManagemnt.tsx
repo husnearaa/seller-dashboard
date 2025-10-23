@@ -230,7 +230,7 @@ export default function ProductManagement() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-3">
-                        <Link href={"/seller-dashboard/product/edit-product"}>
+                        <Link href={`/seller-dashboard/product/edit-product/${item.id}`}>
                           <Button className="rounded p-1.5 text-white hover:bg-blue-50 bg-blue-600 hover:text-blue-600 border hover:border-blue-600 transition-colors">
                             <Pencil className="h-4 w-4" />
                           </Button>
