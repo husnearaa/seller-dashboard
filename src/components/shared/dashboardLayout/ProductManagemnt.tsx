@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Search, Eye, Pencil, Trash2 } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Search, Eye, Pencil, Trash2 } from "lucide-react";
+import Link from "next/link";
 
 // Sample consultant data
 const consultantData = [
@@ -88,34 +89,34 @@ const consultantData = [
     status: "Active",
     stock: "Low Stock",
   },
-]
+];
 
 export default function ProductManagement() {
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState("");
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Active":
-        return "bg-green-50 text-green-600"
+        return "bg-green-50 text-green-600";
       case "Draft":
-        return "bg-orange-50 text-orange-600"
+        return "bg-orange-50 text-orange-600";
       case "Disable":
-        return "bg-gray-100 text-gray-600"
+        return "bg-gray-100 text-gray-600";
       default:
-        return "bg-gray-100 text-gray-600"
+        return "bg-gray-100 text-gray-600";
     }
-  }
+  };
 
   const getStockColor = (stock: string) => {
     if (stock.includes("25 In Stock")) {
-      return "bg-green-50 text-green-600"
+      return "bg-green-50 text-green-600";
     } else if (stock.includes("Out of Stock")) {
-      return "bg-red-50 text-red-600"
+      return "bg-red-50 text-red-600";
     } else if (stock.includes("Low Stock")) {
-      return "bg-orange-50 text-orange-600"
+      return "bg-orange-50 text-orange-600";
     }
-    return "bg-gray-100 text-gray-600"
-  }
+    return "bg-gray-100 text-gray-600";
+  };
 
   return (
     <div className="min-h-screen p-8">
@@ -123,10 +124,17 @@ export default function ProductManagement() {
         {/* Header */}
         <div className="mb-6 flex items-center lg:justify-between justify-center flex-col gap-4 md:flex-row">
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Product management</h1>
+            <h1 className="text-2xl font-semibold text-gray-900">
+              Product management
+            </h1>
             <p className="mt-1 text-sm text-gray-500">Dashboard &gt; Product</p>
           </div>
-          <Button className="bg-gray-900 text-white hover:bg-gray-800">Add New Products</Button>
+          <Link href={"/seller-dashboard/product/add-product"}>
+            {" "}
+            <Button className="bg-gray-900 text-white hover:bg-gray-800">
+              Add New Products
+            </Button>
+          </Link>
         </div>
 
         {/* Search Bar */}
@@ -177,33 +185,48 @@ export default function ProductManagement() {
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {consultantData.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-50 transition-colors">
+                  <tr
+                    key={index}
+                    className="hover:bg-gray-50 transition-colors"
+                  >
                     <td className="px-6 py-4">
                       <Checkbox />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-br from-amber-400 to-orange-500" />
-                        <span className="text-sm font-medium text-gray-900">Organic Hair Oil</span>
+                        <span className="text-sm font-medium text-gray-900">
+                          Organic Hair Oil
+                        </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">#PRD-1045</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{item.expertise}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      #PRD-1045
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      {item.expertise}
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getStatusColor(item.status)}`}
+                        className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getStatusColor(
+                          item.status
+                        )}`}
                       >
                         {item.status}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getStockColor(item.stock)}`}
+                        className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getStockColor(
+                          item.stock
+                        )}`}
                       >
                         {item.stock}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$2,742.00</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      $2,742.00
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <button className="rounded p-1.5 text-blue-600 hover:bg-blue-50 transition-colors">
@@ -225,5 +248,5 @@ export default function ProductManagement() {
         </div>
       </div>
     </div>
-  )
+  );
 }
