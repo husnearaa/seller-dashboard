@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Search, Eye, Pencil, Trash2 } from "lucide-react";
+import { Search, Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
+import { IoEye } from "react-icons/io5";
 
 // Sample consultant data
 const consultantData = [
@@ -228,16 +229,18 @@ export default function ProductManagement() {
                       $2,742.00
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center gap-2">
-                        <button className="rounded p-1.5 text-blue-600 hover:bg-blue-50 transition-colors">
-                          <Pencil className="h-4 w-4" />
+                      <div className="flex items-center gap-3">
+                        <Link href={"/seller-dashboard/product/edit-product"}>
+                          <Button className="rounded p-1.5 text-white hover:bg-blue-50 bg-blue-600 hover:text-blue-600 border hover:border-blue-600 transition-colors">
+                            <Pencil className="h-4 w-4" />
+                          </Button>
+                        </Link>
+                        <button className="rounded-full p-2 hover:text-white bg-blue-100 hover:bg-blue-600 text-blue-600 border transition-colors">
+                          <IoEye className="text-2xl" />
                         </button>
-                        <button className="rounded p-1.5 text-blue-600 hover:bg-blue-50 transition-colors">
-                          <Eye className="h-4 w-4" />
-                        </button>
-                        <button className="rounded p-1.5 text-red-600 hover:bg-red-50 transition-colors">
+                        <Button className="rounded p-1.5 text-red-600 bg-white hover:bg-red-50 transition-colors shadow-md">
                           <Trash2 className="h-4 w-4" />
-                        </button>
+                        </Button>
                       </div>
                     </td>
                   </tr>
