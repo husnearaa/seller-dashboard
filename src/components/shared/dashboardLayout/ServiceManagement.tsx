@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -12,9 +12,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Search, Eye, Pencil, Trash2 } from "lucide-react"
-import { toast } from "sonner"
+} from "@/components/ui/dialog";
+import { Search, Eye, Pencil, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+import Link from "next/link";
 
 // Sample service data
 const initialServiceData = [
@@ -73,66 +74,69 @@ const initialServiceData = [
     price: "$2,742.00",
     description: "Skin care and facial treatment services",
   },
-]
+];
 
 export default function ServiceManagement() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [serviceData, setServiceData] = useState(initialServiceData)
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
-  const [viewDialogOpen, setViewDialogOpen] = useState(false)
-  const [selectedService, setSelectedService] = useState<any>(null)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [serviceData, setServiceData] = useState(initialServiceData);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [viewDialogOpen, setViewDialogOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<any>(null);
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Active":
-        return "bg-green-50 text-green-600 border border-green-200"
+        return "bg-green-50 text-green-600 border border-green-200";
       case "Inactive":
-        return "bg-gray-100 text-gray-600 border border-gray-200"
+        return "bg-gray-100 text-gray-600 border border-gray-200";
       default:
-        return "bg-gray-100 text-gray-600 border border-gray-200"
+        return "bg-gray-100 text-gray-600 border border-gray-200";
     }
-  }
+  };
 
   const getSlotColor = (slot: string) => {
     if (slot.includes("20 sets available")) {
-      return "bg-green-50 text-green-600 border border-green-200"
+      return "bg-green-50 text-green-600 border border-green-200";
     } else if (slot.includes("No set available")) {
-      return "bg-red-50 text-red-600 border border-red-200"
+      return "bg-red-50 text-red-600 border border-red-200";
     } else if (slot.includes("05 set available")) {
-      return "bg-orange-50 text-orange-600 border border-orange-200"
+      return "bg-orange-50 text-orange-600 border border-orange-200";
     }
-    return "bg-gray-100 text-gray-600 border border-gray-200"
-  }
+    return "bg-gray-100 text-gray-600 border border-gray-200";
+  };
 
   // Filter services based on search query
-  const filteredServices = serviceData.filter(service =>
-    service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    service.category.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  const filteredServices = serviceData.filter(
+    (service) =>
+      service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      service.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   // Handle delete click
   const handleDeleteClick = (service: any) => {
-    setSelectedService(service)
-    setDeleteDialogOpen(true)
-  }
+    setSelectedService(service);
+    setDeleteDialogOpen(true);
+  };
 
   // Handle confirm delete
   const handleConfirmDelete = () => {
     if (selectedService) {
-      setServiceData(prev => prev.filter(service => service.id !== selectedService.id))
-      setDeleteDialogOpen(false)
-      setSelectedService(null)
+      setServiceData((prev) =>
+        prev.filter((service) => service.id !== selectedService.id)
+      );
+      setDeleteDialogOpen(false);
+      setSelectedService(null);
       toast.success("Service deleted successfully", {
-        description: `${selectedService.name} has been removed from your services.`
-      })
+        description: `${selectedService.name} has been removed from your services.`,
+      });
     }
-  }
+  };
 
   // Handle view click
   const handleViewClick = (service: any) => {
-    setSelectedService(service)
-    setViewDialogOpen(true)
-  }
+    setSelectedService(service);
+    setViewDialogOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
@@ -140,10 +144,17 @@ export default function ServiceManagement() {
         {/* Header */}
         <div className="mb-6 flex items-center lg:justify-between justify-center flex-col gap-4 md:flex-row">
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Service management</h1>
+            <h1 className="text-2xl font-semibold text-gray-900">
+              Service management
+            </h1>
             <p className="mt-1 text-sm text-gray-500">Dashboard &gt; Service</p>
           </div>
-          <Button className="bg-gray-900 text-white hover:bg-gray-800">Add New Service</Button>
+          <Link href={"/seller-dashboard/service/add-service"}>
+            {" "}
+            <Button className="bg-gray-900 text-white hover:bg-gray-800">
+              Add New Service
+            </Button>
+          </Link>
         </div>
 
         {/* Search Bar */}
@@ -194,7 +205,10 @@ export default function ServiceManagement() {
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {filteredServices.map((service) => (
-                  <tr key={service.id} className="hover:bg-gray-50 transition-colors">
+                  <tr
+                    key={service.id}
+                    className="hover:bg-gray-50 transition-colors"
+                  >
                     <td className="px-6 py-4">
                       <Checkbox />
                     </td>
@@ -203,29 +217,41 @@ export default function ServiceManagement() {
                         <div className="h-10 w-10 flex-shrink-0 rounded-lg bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-xl">
                           {service.icon}
                         </div>
-                        <span className="text-sm font-medium text-gray-900">{service.name}</span>
+                        <span className="text-sm font-medium text-gray-900">
+                          {service.name}
+                        </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{service.category}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{service.duration}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      {service.category}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      {service.duration}
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getStatusColor(service.status)}`}
+                        className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getStatusColor(
+                          service.status
+                        )}`}
                       >
                         {service.status}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getSlotColor(service.slotsAvailable)}`}
+                        className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getSlotColor(
+                          service.slotsAvailable
+                        )}`}
                       >
                         {service.slotsAvailable}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{service.price}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      {service.price}
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
-                        <button 
+                        <button
                           className="rounded p-1.5 text-blue-600 hover:bg-blue-50 transition-colors"
                           onClick={() => handleViewClick(service)}
                         >
@@ -234,7 +260,7 @@ export default function ServiceManagement() {
                         <button className="rounded p-1.5 text-blue-600 hover:bg-blue-50 transition-colors">
                           <Pencil className="h-4 w-4" />
                         </button>
-                        <button 
+                        <button
                           className="rounded p-1.5 text-red-600 hover:bg-red-50 transition-colors"
                           onClick={() => handleDeleteClick(service)}
                         >
@@ -255,7 +281,9 @@ export default function ServiceManagement() {
             <DialogHeader>
               <DialogTitle>Delete Service</DialogTitle>
               <DialogDescription>
-                Are you sure you want to delete <strong>{selectedService?.name}</strong>? This action cannot be undone.
+                Are you sure you want to delete{" "}
+                <strong>{selectedService?.name}</strong>? This action cannot be
+                undone.
               </DialogDescription>
             </DialogHeader>
             <DialogFooter className="flex gap-2 sm:gap-0">
@@ -283,7 +311,7 @@ export default function ServiceManagement() {
             <DialogHeader>
               <DialogTitle>Service Details</DialogTitle>
             </DialogHeader>
-            
+
             {selectedService && (
               <div className="space-y-6">
                 {/* Service Header */}
@@ -292,14 +320,18 @@ export default function ServiceManagement() {
                     {selectedService.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900">{selectedService.name}</h3>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      {selectedService.name}
+                    </h3>
                     <p className="text-gray-600">{selectedService.category}</p>
                   </div>
                 </div>
 
                 {/* Description */}
                 <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                  <h4 className="font-medium text-gray-900 mb-2">Description</h4>
+                  <h4 className="font-medium text-gray-900 mb-2">
+                    Description
+                  </h4>
                   <p className="text-gray-600">{selectedService.description}</p>
                 </div>
 
@@ -316,15 +348,21 @@ export default function ServiceManagement() {
                   <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
                     <h4 className="font-medium text-gray-900 mb-2">Status</h4>
                     <span
-                      className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getStatusColor(selectedService.status)}`}
+                      className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getStatusColor(
+                        selectedService.status
+                      )}`}
                     >
                       {selectedService.status}
                     </span>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h4 className="font-medium text-gray-900 mb-2">Slots Available</h4>
+                    <h4 className="font-medium text-gray-900 mb-2">
+                      Slots Available
+                    </h4>
                     <span
-                      className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getSlotColor(selectedService.slotsAvailable)}`}
+                      className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${getSlotColor(
+                        selectedService.slotsAvailable
+                      )}`}
                     >
                       {selectedService.slotsAvailable}
                     </span>
@@ -337,8 +375,8 @@ export default function ServiceManagement() {
                     <Pencil className="h-4 w-4 mr-2" />
                     Edit Service
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     onClick={() => setViewDialogOpen(false)}
                     className="border-gray-300"
                   >
@@ -351,5 +389,5 @@ export default function ServiceManagement() {
         </Dialog>
       </div>
     </div>
-  )
+  );
 }
