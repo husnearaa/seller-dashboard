@@ -1,11 +1,11 @@
 "use client";
 
-
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Plus, Search, Trash2 } from "lucide-react";
 import { CustomPagination } from "../../CustomPagination";
 import { useState } from "react";
+import Link from "next/link";
 
 interface CouponData {
   id: string;
@@ -75,7 +75,9 @@ export function CouponTable() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between flex-col lg:flex-row">
-        <h2 className="text-xl font-semibold text-foreground mb-2">Coupon List</h2>
+        <h2 className="text-xl font-semibold text-foreground mb-2">
+          Coupon List
+        </h2>
         <div className="flex flex-col lg:flex-row gap-2">
           <div className="relative">
             <input
@@ -87,10 +89,13 @@ export function CouponTable() {
               <Search className="h-4 w-4" />
             </span>
           </div>
-          <Button className="gap-2 bg-foreground text-background hover:bg-foreground/90">
-            <Plus className="h-4 w-4" />
-            Add New Advertisement
-          </Button>
+          <Link href={"/seller-dashboard/marketing-promotions/addCoupon"}>
+            {" "}
+            <Button className="gap-2 bg-foreground text-background hover:bg-foreground/90">
+              <Plus className="h-4 w-4" />
+              Add New Coupon
+            </Button>
+          </Link>
         </div>
       </div>
 
