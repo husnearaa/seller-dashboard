@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/dialog"
 import { Search, Eye, Pencil, Trash2 } from "lucide-react"
 import { toast } from "sonner"
-import Link from "next/link"
 import { CustomPagination } from "../../CustomPagination"
 
 
