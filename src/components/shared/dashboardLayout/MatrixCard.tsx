@@ -1,4 +1,4 @@
-import { DollarSign, Users, TrendingUp, Calendar } from "lucide-react"
+import { DollarSign, Users, TrendingUp, Calendar } from "lucide-react";
 
 const metricsData = [
   {
@@ -37,30 +37,28 @@ const metricsData = [
     bgColor: "bg-gradient-to-r from-#E6D2FF] to-[#C391FF]",
     iconBgColor: "bg-white",
   },
-]
+];
 
 export function MatrixCard() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {metricsData.map((metric, index) => {
-        const Icon = metric.icon
         return (
-          <div key={index} className={`${metric.bgColor} rounded-xl p-6 flex flex-col justify-between h-full`}>
-            <div className="flex items-start justify-between mb-4">
+          <div
+            key={index}
+            className={`${metric.bgColor} rounded-xl p-6 flex flex-col justify-between h-full`}
+          >
+            <div className="flex items-start justify-between ">
               <div>
-                <p className="text-sm text-gray-700 mb-2">{metric.title}</p>
-                <p className="text-3xl font-bold text-gray-900">{metric.value}</p>
-              </div>
-              <div className={`${metric.iconBgColor} rounded-full p-3`}>
-                <Icon className="w-6 h-6 text-gray-700" />
+                <p className="text-sm text-gray-700 mb-14">{metric.title}</p>
+                <p className="text-3xl font-bold text-gray-900">
+                  ${metric.value}
+                </p>
               </div>
             </div>
-            <p className="text-sm text-gray-600">
-              {metric.change} {metric.changeLabel}
-            </p>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
