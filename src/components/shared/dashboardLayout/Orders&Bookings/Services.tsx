@@ -156,7 +156,7 @@ export default function Services() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen p-8">
       <div className="mx-auto container">
         {/* Header */}
         <div className="mb-6 flex items-center lg:justify-between justify-center flex-col gap-4 md:flex-row">

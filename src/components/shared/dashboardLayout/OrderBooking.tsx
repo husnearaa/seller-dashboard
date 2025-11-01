@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AllOrdersBookings from "./Orders&Bookings/AllOrdersBookings";
 import Products from "./Orders&Bookings/Products";
 import Services from "./Orders&Bookings/Services";
+import Consultations from "./Orders&Bookings/Consultations";
 
 const OrderBooking = () => {
   return (
@@ -37,7 +38,7 @@ const OrderBooking = () => {
             </TabsContent>
 
             <TabsContent value="consultations" className="mt-0">
-              {/* <Consultations /> */}
+              <Consultations />
             </TabsContent>
             <TabsContent value="subscriptions" className="mt-0">
               {/* <Subscriptions /> */}
