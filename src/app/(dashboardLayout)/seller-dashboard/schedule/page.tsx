@@ -1,13 +1,14 @@
 
 'use client';
 import React, { useState } from 'react';
-import WeeklyAvailability from './components/WeeklyAvailability';
-import UpcomingAppointments from './components/UpcomingAppointments';
+// import WeeklyAvailability from './components/WeeklyAvailability';
+// import UpcomingAppointments from './components/UpcomingAppointments';
 import { GoGear } from 'react-icons/go';
 import { FaPlus } from 'react-icons/fa6';
-import CalendarGrid from './components/CalendarGrid';
+// import CalendarGrid from './components/CalendarGrid';
 import Link from 'next/link';
-import AvailabilityModal from './components/AvailabilityModal';
+import WeeklyAvailability from '@/components/shared/dashboardLayout/ScheduleManagement/WeeklyAvailability';
+// import AvailabilityModal from './components/AvailabilityModal';
 
 const SchedulePage = () => {
   const [showModal, setShowModal] = useState(false);
