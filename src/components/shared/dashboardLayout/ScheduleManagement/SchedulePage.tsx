@@ -2,9 +2,10 @@
 
 import { useState } from "react"
 import { ChevronLeft, ChevronRight, Settings, Clock } from "lucide-react"
-import WeeklyAvailability from "@/components/weekly-availability"
-import UpcomingAppointments from "@/components/upcoming-appointments"
+
 import CalendarView from "./CalendarView"
+import WeeklyAvailability from "./WeeklyAvailability"
+import UpcomingAppointments from "./UpcomingAppointments"
 
 
 
