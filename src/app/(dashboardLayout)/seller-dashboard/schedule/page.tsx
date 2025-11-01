@@ -8,6 +8,7 @@ import { FaPlus } from 'react-icons/fa6';
 // import CalendarGrid from './components/CalendarGrid';
 import Link from 'next/link';
 import WeeklyAvailability from '@/components/shared/dashboardLayout/ScheduleManagement/WeeklyAvailability';
+import UpcomingAppointments from '@/components/shared/dashboardLayout/ScheduleManagement/UpcomingAppointments';
 // import AvailabilityModal from './components/AvailabilityModal';
 
 const SchedulePage = () => {
