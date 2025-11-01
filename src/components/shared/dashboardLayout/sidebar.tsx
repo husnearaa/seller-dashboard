@@ -24,6 +24,7 @@ const navigation = [
   { name: "Product Management", href: "/seller-dashboard/product", icon: Calendar },
   { name: "Service Management", href: "/seller-dashboard/service", icon: FileText },
   { name: "Consultation ", href: "/seller-dashboard/consultation", icon: CircleDollarSign },
+  { name: "Schedule MAnagement ", href: "/seller-dashboard/schedule", icon: CircleDollarSign },
   { name: "Subscription ", href: "/seller-dashboard/subscription", icon: CircleDollarSign },
   { name: "Specialist", href: "/seller-dashboard/specialist", icon: CircleDollarSign },
   { name: "Orders & Bookings", href: "/seller-dashboard/order-booking", icon: CircleDollarSign },
