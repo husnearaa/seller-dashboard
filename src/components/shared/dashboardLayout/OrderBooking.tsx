@@ -1,12 +1,50 @@
-import React from 'react';
-import { OrderBookingMatrix } from './OrderBookingMatrix';
+import React from "react";
+import { OrderBookingMatrix } from "./OrderBookingMatrix";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import AllOrdersBookings from "./Orders&Bookings/AllOrdersBookings";
 
 const OrderBooking = () => {
-    return (
-        <div>
-           <OrderBookingMatrix /> 
-        </div>
-    );
+  return (
+    <div>
+      <OrderBookingMatrix />
+
+      <main className="mt-8">
+        <Tabs defaultValue="all" className="w-full">
+          {/* Tabs List Section (Centered and Constrained) */}
+          <div className="w-full flex justify-start">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8">
+              <TabsTrigger value="all">All</TabsTrigger>
+              <TabsTrigger value="orders">Orders</TabsTrigger>
+              <TabsTrigger value="services">Services</TabsTrigger>
+              <TabsTrigger value="consultations">Consultations</TabsTrigger>
+              <TabsTrigger value="subscriptions">Subscriptions</TabsTrigger>
+            </TabsList>
+          </div>
+
+          {/* Tabs Content Section (Full Width) */}
+          <div className="w-full">
+            <TabsContent value="all" className="mt-0">
+              <AllOrdersBookings />
+            </TabsContent>
+            <TabsContent value="orders" className="mt-0">
+              {/* <Orders /> */}
+            </TabsContent>
+
+            <TabsContent value="services" className="mt-0">
+              {/* <Services /> */}
+            </TabsContent>
+
+            <TabsContent value="consultations" className="mt-0">
+              {/* <Consultations /> */}
+            </TabsContent>
+            <TabsContent value="subscriptions" className="mt-0">
+              {/* <Subscriptions /> */}
+            </TabsContent>
+          </div>
+        </Tabs>
+      </main>
+    </div>
+  );
 };
 
 export default OrderBooking;
