@@ -1,9 +1,10 @@
 import React from 'react';
+import Products from './Products';
 
 const AllOrdersBookings = () => {
     return (
-        <div>
-            
+        <div className="space-y-4">
+            <Products />
         </div>
     );
 };
