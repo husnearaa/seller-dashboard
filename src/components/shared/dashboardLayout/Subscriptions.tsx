@@ -15,200 +15,181 @@ import {
 } from "@/components/ui/dialog"
 import { Search, Eye, Pencil, Trash2 } from "lucide-react"
 import { toast } from "sonner"
-import { CustomPagination } from "../../CustomPagination"
+import { CustomPagination } from "../CustomPagination"
 
 
-const ConsultationDemoData = [
+const SubscriptionDemoData = [
   {
     id: 1,
-    name: "Personal Styling Consultation",
-    avatar: "👔",
-    type: "Online",
-    duration: "30 Mins",
-    status: "Active",
-    nextSlot: "Sep 28, 3:00 PM",
+    name: "Premium Wellness Plan",
+    avatar: "💆",
+    type: "Weekly",
+    subscriber: "30 Active",
+    renewalStatus: "Auto",
     price: "$2,742.00",
   },
   {
     id: 2,
     name: "Property Build",
     avatar: "🏗️",
-    type: "Offline",
-    duration: "20 Mins",
-    status: "Active",
-    nextSlot: "Sep 27, 3:00 PM",
+    type: "Monthly",
+    subscriber: "20 Active",
+    renewalStatus: "Auto",
     price: "$2,742.00",
   },
   {
     id: 3,
     name: "Massage",
     avatar: "💆",
-    type: "Online",
-    duration: "25 Mins",
-    status: "Inactive",
-    nextSlot: "Not Available",
+    type: "Yearly",
+    subscriber: "25 Active",
+    renewalStatus: "Manual",
     price: "$2,742.00",
   },
   {
     id: 4,
     name: "Pet Care",
     avatar: "🐾",
-    type: "Online",
-    duration: "10 Mins",
-    status: "Active",
-    nextSlot: "Oct 02, 3:00 PM",
+    type: "Monthly",
+    subscriber: "10 Active",
+    renewalStatus: "Auto",
     price: "$2,742.00",
   },
   {
     id: 5,
     name: "Facial",
     avatar: "💅",
-    type: "Offline",
-    duration: "10 Mins",
-    status: "Inactive",
-    nextSlot: "Not Available",
+    type: "Monthly",
+    subscriber: "10 Active",
+    renewalStatus: "Manual",
     price: "$2,742.00",
   },
   {
     id: 6,
     name: "Pet Care",
     avatar: "🐕",
-    type: "Offline",
-    duration: "10 Mins",
-    status: "Active",
-    nextSlot: "Sep 28, 3:00 PM",
+    type: "Yearly",
+    subscriber: "10 Active",
+    renewalStatus: "Auto",
     price: "$2,742.00",
   },
   {
     id: 7,
     name: "Yoga",
     avatar: "🧘",
-    type: "Online",
-    duration: "10 Mins",
-    status: "Inactive",
-    nextSlot: "Not Available",
+    type: "Weekly",
+    subscriber: "10 Active",
+    renewalStatus: "Manual",
     price: "$2,742.00",
   },
   {
     id: 8,
     name: "Gardening",
     avatar: "🌿",
-    type: "Offline",
-    duration: "10 Mins",
-    status: "Active",
-    nextSlot: "Sep 28, 3:00 PM",
+    type: "Weekly",
+    subscriber: "10 Active",
+    renewalStatus: "Auto",
     price: "$2,742.00",
   },
   {
     id: 9,
     name: "Therapy",
     avatar: "🧠",
-    type: "Online",
-    duration: "10 Mins",
-    status: "Inactive",
-    nextSlot: "Not Available",
+    type: "Yearly",
+    subscriber: "10 Active",
+    renewalStatus: "Manual",
     price: "$2,742.00",
   },
   {
     id: 10,
     name: "Event Organization",
     avatar: "🎉",
-    type: "Offline",
-    duration: "10 Mins",
-    status: "Active",
-    nextSlot: "Sep 28, 3:00 PM",
+    type: "Weekly",
+    subscriber: "10 Active",
+    renewalStatus: "Auto",
     price: "$2,742.00",
   },
   {
     id: 11,
-    name: "Event Organization",
-    avatar: "🎉",
-    type: "Offline",
-    duration: "10 Mins",
-    status: "Active",
-    nextSlot: "Sep 28, 3:00 PM",
+    name: "Therapy",
+    avatar: "🧠",
+    type: "Yearly",
+    subscriber: "10 Active",
+    renewalStatus: "Manual",
     price: "$2,742.00",
   },
   {
     id: 12,
     name: "Event Organization",
     avatar: "🎉",
-    type: "Offline",
-    duration: "10 Mins",
-    status: "Active",
-    nextSlot: "Sep 28, 3:00 PM",
+    type: "Weekly",
+    subscriber: "10 Active",
+    renewalStatus: "Auto",
     price: "$2,742.00",
   },
 ]
 
-export default function Consultations() {
+export default function Subscriptions() {
   const [searchQuery, setSearchQuery] = useState("")
-  const [consultationData, setConsultationData] = useState(ConsultationDemoData)
+  const [subscriptionData, setSubscriptionData] = useState(SubscriptionDemoData)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [viewDialogOpen, setViewDialogOpen] = useState(false)
-  const [selectedConsultation, setSelectedConsultation] = useState<any>(null)
+  const [selectedSubscription, setSelectedSubscription] = useState<any>(null)
 
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(10)
 
-  const getStatusColor = (status: string) => {
-    if (status === "Active") {
+  const getRenewalStatusColor = (status: string) => {
+    if (status === "Auto") {
       return "bg-green-100 text-green-700"
     }
-    return "bg-red-100 text-red-700"
+    return "bg-gray-100 text-gray-700"
   }
 
-  const getNextSlotColor = (nextSlot: string) => {
-    if (nextSlot === "Not Available") {
-      return "bg-red-100 text-red-700"
-    }
-    return "bg-green-100 text-green-700"
-  }
-
-  // Filter consultations based on search query
-  const filteredConsultations = useMemo(() => {
-    return consultationData.filter(
-      (consultation) =>
-        consultation.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        consultation.type.toLowerCase().includes(searchQuery.toLowerCase()),
+  // Filter subscriptions based on search query
+  const filteredSubscriptions = useMemo(() => {
+    return subscriptionData.filter(
+      (subscription) =>
+        subscription.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        subscription.type.toLowerCase().includes(searchQuery.toLowerCase()),
     )
-  }, [consultationData, searchQuery])
+  }, [subscriptionData, searchQuery])
 
   // Calculate pagination for filtered data
-  const totalItems = filteredConsultations.length
+  const totalItems = filteredSubscriptions.length
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = filteredConsultations.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = filteredSubscriptions.slice(indexOfFirstItem, indexOfLastItem)
 
-  const handleDeleteClick = (consultation: any) => {
-    setSelectedConsultation(consultation)
+  const handleDeleteClick = (subscription: any) => {
+    setSelectedSubscription(subscription)
     setDeleteDialogOpen(true)
   }
 
   const handleConfirmDelete = () => {
-    if (selectedConsultation) {
-      setConsultationData((prev) => prev.filter((consultation) => consultation.id !== selectedConsultation.id))
+    if (selectedSubscription) {
+      setSubscriptionData((prev) => prev.filter((subscription) => subscription.id !== selectedSubscription.id))
       setDeleteDialogOpen(false)
-      setSelectedConsultation(null)
-      toast.success("Consultation deleted successfully", {
-        description: `${selectedConsultation.name} has been removed.`,
+      setSelectedSubscription(null)
+      toast.success("Subscription deleted successfully", {
+        description: `${selectedSubscription.name} has been removed.`,
       })
     }
   }
 
-  const handleViewClick = (consultation: any) => {
-    setSelectedConsultation(consultation)
+  const handleViewClick = (subscription: any) => {
+    setSelectedSubscription(subscription)
     setViewDialogOpen(true)
   }
 
   return (
-    <div className=" bg-gray-50 p-8">
+    <div className="bg-gray-50 p-8">
       <div className="mx-auto container">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Consultation management</h1>
-            <p className="mt-1 text-sm text-gray-600">Dashboard &gt; Consultation</p>
+            <h1 className="text-3xl font-bold text-gray-900">Subscription management</h1>
+            <p className="mt-1 text-sm text-gray-600">Dashboard &gt; Subscription</p>
           </div>
         </div>
 
@@ -222,7 +203,7 @@ export default function Consultations() {
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value)
-                setCurrentPage(1) // Reset to first page when searching
+                setCurrentPage(1)
               }}
               className="pl-10 bg-white border-gray-200"
             />
@@ -240,53 +221,43 @@ export default function Consultations() {
                   </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Service</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Type</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Duration</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Status</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Next Slot</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Subscriber</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Renewal Status</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Price</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {currentItems.map((consultation) => (
-                  <tr key={consultation.id} className="hover:bg-gray-50 transition-colors">
+                {currentItems.map((subscription) => (
+                  <tr key={subscription.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4">
                       <Checkbox />
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-200 flex items-center justify-center text-lg">
-                          {consultation.avatar}
+                          {subscription.avatar}
                         </div>
-                        <span className="text-sm font-medium text-gray-900">{consultation.name}</span>
+                        <span className="text-sm font-medium text-gray-900">{subscription.name}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{consultation.type}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{consultation.duration}</td>
+                    <td className="px-6 py-4 text-sm text-gray-600">{subscription.type}</td>
+                    <td className="px-6 py-4 text-sm text-gray-600">{subscription.subscriber}</td>
                     <td className="px-6 py-4">
                       <span
-                        className={`inline-flex px-3 py-1 text-xs font-medium ${getStatusColor(
-                          consultation.status,
+                        className={`inline-flex px-3 py-1 text-xs font-medium ${getRenewalStatusColor(
+                          subscription.renewalStatus,
                         )}`}
                       >
-                        {consultation.status}
+                        {subscription.renewalStatus}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
-                      <span
-                        className={`inline-flex  px-3 py-1 text-xs font-medium ${getNextSlotColor(
-                          consultation.nextSlot,
-                        )}`}
-                      >
-                        {consultation.nextSlot}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{consultation.price}</td>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{subscription.price}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
                         <button
                           className="rounded p-1.5 text-blue-600 hover:bg-blue-50 transition-colors"
-                          onClick={() => handleViewClick(consultation)}
+                          onClick={() => handleViewClick(subscription)}
                           title="View"
                         >
                           <Eye className="h-4 w-4" />
@@ -296,7 +267,7 @@ export default function Consultations() {
                         </button>
                         <button
                           className="rounded p-1.5 text-red-600 hover:bg-red-50 transition-colors"
-                          onClick={() => handleDeleteClick(consultation)}
+                          onClick={() => handleDeleteClick(subscription)}
                           title="Delete"
                         >
                           <Trash2 className="h-4 w-4" />
@@ -323,9 +294,9 @@ export default function Consultations() {
         <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>Delete Consultation</DialogTitle>
+              <DialogTitle>Delete Subscription</DialogTitle>
               <DialogDescription>
-                Are you sure you want to delete <strong>{selectedConsultation?.name}</strong>? This action cannot be
+                Are you sure you want to delete <strong>{selectedSubscription?.name}</strong>? This action cannot be
                 undone.
               </DialogDescription>
             </DialogHeader>
@@ -344,43 +315,43 @@ export default function Consultations() {
         <Dialog open={viewDialogOpen} onOpenChange={setViewDialogOpen}>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>Consultation Details</DialogTitle>
+              <DialogTitle>Subscription Details</DialogTitle>
             </DialogHeader>
 
-            {selectedConsultation && (
+            {selectedSubscription && (
               <div className="space-y-4">
                 <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
                   <div className="h-12 w-12 flex-shrink-0 rounded-full bg-gray-200 flex items-center justify-center text-2xl">
-                    {selectedConsultation.avatar}
+                    {selectedSubscription.avatar}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">{selectedConsultation.name}</h3>
-                    <p className="text-sm text-gray-600">{selectedConsultation.type}</p>
+                    <h3 className="font-semibold text-gray-900">{selectedSubscription.name}</h3>
+                    <p className="text-sm text-gray-600">{selectedSubscription.type}</p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase">Duration</p>
-                    <p className="text-sm font-medium text-gray-900">{selectedConsultation.duration}</p>
+                    <p className="text-xs font-medium text-gray-500 uppercase">Type</p>
+                    <p className="text-sm font-medium text-gray-900">{selectedSubscription.type}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase">Status</p>
+                    <p className="text-xs font-medium text-gray-500 uppercase">Subscriber</p>
+                    <p className="text-sm font-medium text-gray-900">{selectedSubscription.subscriber}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-gray-500 uppercase">Renewal Status</p>
                     <span
-                      className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${getStatusColor(
-                        selectedConsultation.status,
+                      className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${getRenewalStatusColor(
+                        selectedSubscription.renewalStatus,
                       )}`}
                     >
-                      {selectedConsultation.status}
+                      {selectedSubscription.renewalStatus}
                     </span>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase">Next Slot</p>
-                    <p className="text-sm font-medium text-gray-900">{selectedConsultation.nextSlot}</p>
-                  </div>
-                  <div>
                     <p className="text-xs font-medium text-gray-500 uppercase">Price</p>
-                    <p className="text-sm font-medium text-gray-900">{selectedConsultation.price}</p>
+                    <p className="text-sm font-medium text-gray-900">{selectedSubscription.price}</p>
                   </div>
                 </div>
 

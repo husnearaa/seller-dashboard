@@ -156,8 +156,7 @@ export default function Services() {
   };
 
   return (
-    <div className="min-h-screen p-8">
-      <div className="mx-auto container">
+      <div className="mx-auto container p-8">
         {/* Header */}
         <div className="mb-6 flex items-center lg:justify-between justify-center flex-col gap-4 md:flex-row">
           <div>
@@ -442,6 +441,5 @@ export default function Services() {
           </DialogContent>
         </Dialog>
       </div>
-    </div>
   );
 }

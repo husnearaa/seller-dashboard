@@ -2,6 +2,7 @@ import React from "react";
 import Products from "./Products";
 import Services from "./Services";
 import Consultations from "./Consultations";
+import Subscriptions from "../Subscriptions";
 
 const AllOrdersBookings = () => {
   return (
@@ -9,6 +10,7 @@ const AllOrdersBookings = () => {
       <Products />
       <Services />
       <Consultations />
+      <Subscriptions />
     </div>
   );
 };

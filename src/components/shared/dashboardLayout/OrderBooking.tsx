@@ -5,6 +5,7 @@ import AllOrdersBookings from "./Orders&Bookings/AllOrdersBookings";
 import Products from "./Orders&Bookings/Products";
 import Services from "./Orders&Bookings/Services";
 import Consultations from "./Orders&Bookings/Consultations";
+import Subscriptions from "./Subscriptions";
 
 const OrderBooking = () => {
   return (
@@ -41,7 +42,7 @@ const OrderBooking = () => {
               <Consultations />
             </TabsContent>
             <TabsContent value="subscriptions" className="mt-0">
-              {/* <Subscriptions /> */}
+              <Subscriptions />
             </TabsContent>
           </div>
         </Tabs>
