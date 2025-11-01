@@ -1,3 +1,4 @@
+import { AdvertisingGrid } from "./AdvertisingGrid";
 import { CouponTable } from "./CouponTable";
 
 export default function MarketingPromotion() {
@@ -21,7 +22,7 @@ export default function MarketingPromotion() {
         </section>
 
         {/* Advertising Section */}
-        <section>{/* <AdvertisingGrid /> */}</section>
+        <section><AdvertisingGrid /></section>
       </div>
     </main>
   );
