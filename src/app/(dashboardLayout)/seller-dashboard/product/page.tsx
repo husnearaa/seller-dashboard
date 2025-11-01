@@ -1,4 +1,4 @@
-import ProductManagement from '@/components/shared/dashboardLayout/ProductManagemnt';
+import ProductManagement from '@/components/shared/dashboardLayout/ProductManagement';
 import React from 'react';
 
 const page = () => {
