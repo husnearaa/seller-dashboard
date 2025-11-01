@@ -74,9 +74,9 @@ export function CouponTable() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-foreground">Coupon List</h2>
-        <div className="flex gap-2">
+      <div className="mb-6 flex items-center justify-between flex-col lg:flex-row">
+        <h2 className="text-xl font-semibold text-foreground mb-2">Coupon List</h2>
+        <div className="flex flex-col lg:flex-row gap-2">
           <div className="relative">
             <input
               type="text"
