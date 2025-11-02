@@ -1,4 +1,5 @@
 "use client"
+import { ProductPerformanceTable } from "@/components/shared/dashboardLayout/ReportsAnalytics/ProductPerformanceTable"
 import { ReportsAnalyticsMatrix } from "@/components/shared/dashboardLayout/ReportsAnalytics/ReportsAnalyticsMatrix"
 import { SalesDistributionChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SalesDistributionChart"
 import { SalesTrendChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SalesTrendChart"
@@ -37,8 +38,8 @@ export default function ReportsAnalytics() {
 
         {/* Tables */}
         <div className="grid grid-cols-1 gap-8 mb-8">
-          {/* <ProductPerformanceTable />
-          <ServicePerformanceTable /> */}
+        <ProductPerformanceTable />
+           {/*  <ServicePerformanceTable /> */}
         </div>
 
         {/* Subscription Growth */}
