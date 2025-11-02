@@ -3,6 +3,7 @@ import { ProductPerformanceTable } from "@/components/shared/dashboardLayout/Rep
 import { ReportsAnalyticsMatrix } from "@/components/shared/dashboardLayout/ReportsAnalytics/ReportsAnalyticsMatrix"
 import { SalesDistributionChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SalesDistributionChart"
 import { SalesTrendChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SalesTrendChart"
+import { ServicePerformanceTable } from "@/components/shared/dashboardLayout/ReportsAnalytics/ServicePerformanceTable"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "lucide-react"
 
@@ -39,7 +40,7 @@ export default function ReportsAnalytics() {
         {/* Tables */}
         <div className="grid grid-cols-1 gap-8 mb-8">
         <ProductPerformanceTable />
-           {/*  <ServicePerformanceTable /> */}
+        <ServicePerformanceTable />
         </div>
 
         {/* Subscription Growth */}
