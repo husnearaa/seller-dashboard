@@ -4,6 +4,7 @@ import { ReportsAnalyticsMatrix } from "@/components/shared/dashboardLayout/Repo
 import { SalesDistributionChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SalesDistributionChart"
 import { SalesTrendChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SalesTrendChart"
 import { ServicePerformanceTable } from "@/components/shared/dashboardLayout/ReportsAnalytics/ServicePerformanceTable"
+import { SubscriptionGrowthChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SubscriptionGrowthChart"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "lucide-react"
 
@@ -45,7 +46,7 @@ export default function ReportsAnalytics() {
 
         {/* Subscription Growth */}
         <div>
-          {/* <SubscriptionGrowthChart /> */}
+          <SubscriptionGrowthChart />
         </div>
       </div>
     </main>
