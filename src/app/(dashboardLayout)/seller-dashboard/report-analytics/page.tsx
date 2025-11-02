@@ -1,5 +1,6 @@
 "use client"
 import { ReportsAnalyticsMatrix } from "@/components/shared/dashboardLayout/ReportsAnalytics/ReportsAnalyticsMatrix"
+import { SalesDistributionChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SalesDistributionChart"
 import { SalesTrendChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SalesTrendChart"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "lucide-react"
@@ -25,12 +26,12 @@ export default function ReportsAnalytics() {
       <div className="mt-6 mx-auto">
         <ReportsAnalyticsMatrix />
         {/* Charts Row 1 */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 my-8">
           <div className="lg:col-span-2">
             <SalesTrendChart />
           </div>
           <div>
-            {/* <SalesDistributionChart /> */}
+            <SalesDistributionChart />
           </div>
         </div>
 
