@@ -1,5 +1,6 @@
 "use client"
 import { ReportsAnalyticsMatrix } from "@/components/shared/dashboardLayout/ReportsAnalytics/ReportsAnalyticsMatrix"
+import { SalesTrendChart } from "@/components/shared/dashboardLayout/ReportsAnalytics/SalesTrendChart"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "lucide-react"
 
@@ -26,7 +27,7 @@ export default function ReportsAnalytics() {
         {/* Charts Row 1 */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <div className="lg:col-span-2">
-            {/* <SalesTrendChart /> */}
+            <SalesTrendChart />
           </div>
           <div>
             {/* <SalesDistributionChart /> */}
