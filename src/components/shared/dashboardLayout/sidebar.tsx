@@ -30,7 +30,7 @@ const navigation = [
   { name: "Orders & Bookings", href: "/seller-dashboard/order-booking", icon: CircleDollarSign },
   { name: "Payments & Earnings", href: "/seller-dashboard/payments-earnings", icon: CircleDollarSign },
   { name: "Marketing & Promotions", href: "/seller-dashboard/marketing-promotions", icon: CircleDollarSign },
-  { name: "Reports & Analytics", href: "/seller-dashboard/reports-analytics", icon: User },
+  { name: "Reports & Analytics", href: "/seller-dashboard/report-analytics", icon: User },
 ];
 
 export function Sidebar() {
