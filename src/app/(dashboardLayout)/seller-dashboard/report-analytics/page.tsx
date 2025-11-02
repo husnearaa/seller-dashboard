@@ -14,9 +14,9 @@ export default function ReportsAnalytics() {
     <main className="min-h-screen bg-background">
       {/* Header */}
       <div className="border-b border-border bg-white p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-3xl font-bold">Reports & Analytics</h1>
+        <div className="flex items-center justify-between flex-col lg:flex-row mb-4">
+          <div className="mb-3 lg:mb-0">
+            <h1 className="lg:text-3xl text-lg font-bold">Reports & Analytics</h1>
             <p className="text-sm text-muted-foreground mt-1">Dashboard • Reports & Analytics</p>
           </div>
           <Button variant="outline" className="gap-2 bg-transparent">
