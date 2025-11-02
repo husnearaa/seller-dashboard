@@ -3,7 +3,7 @@ import { DollarSign, Users, TrendingUp, Calendar } from "lucide-react";
 const metricsData = [
   {
     title: "Total Sales",
-    value: "$2,350",
+    value: "2,350",
     change: "+12.5%",
     changeLabel: "from yesterday",
     icon: DollarSign,
@@ -21,7 +21,7 @@ const metricsData = [
   },
   {
     title: "Total Earnings",
-    value: "$18,420",
+    value: "18,420",
     change: "+8.2%",
     changeLabel: "this month",
     icon: TrendingUp,
